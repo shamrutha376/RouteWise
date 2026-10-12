@@ -403,11 +403,26 @@ if missing:
     st.stop()
 
 
-df = load_features()
-graph = load_graph()
-traffic_model, risk_model, risk_classifier = load_models()
-pois = load_pois()
 
+try:
+    st.info("RouteWise startup: loading features...")
+    df = load_features()
+
+    st.info("RouteWise startup: loading road network...")
+    graph = load_graph()
+
+    st.info("RouteWise startup: loading machine-learning models...")
+    traffic_model, risk_model, risk_classifier = load_models()
+
+    st.info("RouteWise startup: loading infrastructure POIs...")
+    pois = load_pois()
+
+    st.success("RouteWise startup completed successfully.")
+
+except Exception as e:
+    st.error(f"RouteWise startup failed: {type(e).__name__}: {e}")
+    st.exception(e)
+    st.stop()
 
 # ------------------------------------------------------------
 # PREDICTION HELPERS
