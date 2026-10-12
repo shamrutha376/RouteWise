@@ -9,6 +9,3 @@ env/
 cache/
 backup_versions/
 Data/adjacency_matrix.npy
-Data/X_features_with_accidents.csv
-models/risk_prediction_model.pkl
-models/traffic_prediction_model.pkl
