@@ -411,8 +411,18 @@ try:
     st.info("RouteWise startup: loading road network...")
     graph = load_graph()
 
-    st.info("RouteWise startup: loading machine-learning models...")
-    traffic_model, risk_model, risk_classifier = load_models()
+    
+    st.info("RouteWise startup: loading traffic prediction model...")
+    traffic_model = joblib.load(TRAFFIC_MODEL_FILE)
+    st.success("Traffic prediction model loaded.")
+
+    st.info("RouteWise startup: loading risk prediction model...")
+    risk_model = joblib.load(RISK_MODEL_FILE)
+    st.success("Risk prediction model loaded.")
+
+    st.info("RouteWise startup: loading risk-level classifier...")
+    risk_classifier = joblib.load(RISK_CLASSIFIER_FILE)
+    st.success("Risk-level classifier loaded.")
 
     st.info("RouteWise startup: loading infrastructure POIs...")
     pois = load_pois()
